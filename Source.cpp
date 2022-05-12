@@ -32,7 +32,7 @@ int main() {
 			gameEngine->next(dt, 's');
 		}
 		else if (rotateccw) {
-			gameEngine->rotate();
+//			gameEngine->rotate();
 		}
 		
 		gameEngine->next(dt, 0);

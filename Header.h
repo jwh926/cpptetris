@@ -92,7 +92,28 @@ public:
 	}
 
 	void rotate() {
+		int temp[3][3] = { 0, };
 
+		for (int i = 0; i < 3; i++) {
+			int* target;
+			for (int j = 0; j < 3; j++) {
+				target = userBlock[j] + i;
+				//printf("%d, %d\n", *target, userBlock[i][j]);
+				temp[i][j] = *target;
+			}
+		}
+
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				userBlock[i][j] = temp[i][j];
+			}
+		}
+
+		for (int i = 0; i < 3; i++) {
+			int temp1 = temp[i][0];
+			userBlock[i][0] = userBlock[i][2];
+			userBlock[i][2] = temp1;
+		}
 	}
 
 	bool gameOverDecision() {
@@ -112,7 +133,7 @@ public:
 				if (userBlock[i][j] == 1 && i + blockY + 1 >= GRID_HEIGHT)
 					return false;
 				if (userBlock[i][j] == 1 && gameGridData[i + blockY + 1][j + blockX] == 1)
-					return false;			
+					return false;
 			}
 		}
 		return true;
